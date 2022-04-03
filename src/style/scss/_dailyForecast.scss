@@ -1,0 +1,17 @@
+@use "custom" as *;
+
+#dailyForecast {
+
+  max-width: 720px;
+  font-weight: 500;
+  color: $gray-700;
+  font-size: 1.25rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  background: white;
+  
+  
+  .icon{
+    font-size: 1.5rem;
+  }
+}

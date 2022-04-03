@@ -1,24 +1,22 @@
-import { useState } from "react";
+
 
 import useFetch from "./useFetch";
 import Form from "./Form";
 import CurrentWeather from "./components/CurrentWeather";
 import DailyForecast from "./components/DailyForecast";
 import HourlyForecastToday from "./components/HourlyForecastToday";
-import getCurrentWeather from "./helpers/getCurrentWeather";
+
 
 const Home = () => {
   // forecast returns: {currentWeather, forecastToday, forecastDayOne, forecastDayTwo, dailyForecastArr}
   const { gotData, getWeather, isLoading, isError, forecast } = useFetch();
-  const [result, setResult] = useState(false);
+  
 
   const submitSearch = (location) => {
     getWeather(location);
   };
 
-  // if (!isLoading) {
-  //   console.log(forecast);
-  // }
+
 
   const styles = {
     gotDataTrue: {
@@ -38,21 +36,23 @@ const Home = () => {
     },
   };
 
-  //   const apiKey = "9fdf38bfba2ef817be0cbd16ec202d94";
-  // style={{backgroundImage: `url(${background_image})`}
   return (
+    //styling page based on whether we haved fetched weather data
     <div
       className="home"
       style={
         gotData ? styles.gotDataTrue : styles.gotDataFalse
-      }
-    >
-      <Form submitSearch={submitSearch} result={result} gotData={gotData} />
+      }> 
+      
+      {/* checking if user is offline so we can display offline message} */}
+      {!navigator.onLine && <div className="offline">You're offline</div>} 
 
-      {isError && <div>Check spelling</div>}
+
+      <Form submitSearch={submitSearch} gotData={gotData} error={isError} />
+
       {!isLoading && (
         <div className="content">
-          <CurrentWeather forecastToday={forecast.currentWeather} />
+          <CurrentWeather forecastToday={forecast.currentWeather} error={isError} />
           <HourlyForecastToday hourlyForecast={forecast.hourlyForecastToday} />
           <DailyForecast dailyForecast={forecast.dailyForecastArr} />
         </div>

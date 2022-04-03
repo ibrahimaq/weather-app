@@ -1,0 +1,19 @@
+@use "custom" as *;
+
+form{
+    
+
+    input{
+        width: 75%;
+        padding: .5rem 1rem;
+        border-top-left-radius: .75rem;
+        border-bottom-left-radius: .75rem;
+        border: none;
+    }
+    .icon{
+        color: $gray-600;
+        font-size: 1.5rem;
+        border-top-right-radius: .75rem;
+        border-bottom-right-radius: .75rem;
+    }
+}

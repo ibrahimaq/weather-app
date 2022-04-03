@@ -1,0 +1,47 @@
+@use "custom" as *;
+
+#hourlyForecast {
+  max-width: 720px;
+
+  .container {
+    background-image: linear-gradient(#ffffff40, rgb(255, 255, 255, 0.25));
+    border-radius: 12px;
+  }
+  .hourly-time {
+    font-size: 1.25rem;
+  }
+  .hourly-state {
+    font-size: 1.5rem;
+  }
+  .hourly-temp {
+    font-size: 1.5rem;
+  }
+
+  //horizontal scrolling
+  .row {
+    overflow: auto !important;
+    white-space: nowrap !important;
+  }
+
+  
+}
+
+@include media-breakpoint-down(sm) {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  #hourlyForecast {
+    .row::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .row {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .hourly-item {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
